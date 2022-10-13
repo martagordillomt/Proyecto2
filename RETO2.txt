@@ -1,0 +1,80 @@
+CREATE TABLE CLIENT
+(
+    ID NUMBER(10) NOT NULL,   
+    NAME VARCHAR2(4000) NOT NULL, 
+    EMAIL VARCHAR2(20) NOT NULL,  
+    AGE NUMBER(2) NULL, 
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE MESSAGE
+(
+    ID NUMBER(10) NOT NULL,   
+    MESSAGETEXT VARCHAR2(4000) NOT NULL,  
+    PRIMARY KEY (ID)
+);
+
+CABIN/:id
+
+-- GET
+SELECT * FROM cabin WHERE ID = :id
+
+
+CLIENT
+
+-- GET 
+SELECT * FROM CLIENT
+
+--POST
+BEGIN
+    INSERT INTO CLIENT(ID, NAME, EMAIL, AGE) 
+    VALUES (:id, :name, :email, :age);
+    :status_code:=201;
+  END;
+
+-- PUT
+BEGIN
+    UPDATE CLIENT SET NAME=:name, EMAIL=:email, AGE=:age WHERE ID=:id;
+    :status_code:=201;
+  END;
+
+--DELETE
+BEGIN
+    DELETE FROM CLIENT WHERE ID = :id;
+    :status_code:=204;
+  END;
+
+
+CLIENT/:id
+
+--GET
+SELECT * FROM CLIENT WHERE ID= :id
+
+MESSAGE
+
+-- GET 
+SELECT * FROM MESSAGE
+
+--POST
+BEGIN
+    INSERT INTO MESSAGE(ID, MESSAGETEXT) 
+    VALUES (:id, :messagetext);
+    :status_code:=201;
+  END;
+
+-- PUT
+BEGIN
+    UPDATE MESSAGE SET MESSAGETEXT=:messagetext WHERE ID=:id;
+    :status_code:=201;
+  END;
+
+--DELETE
+BEGIN
+    DELETE FROM MESSAGE WHERE ID = :id;
+    :status_code:=204;
+  END;
+
+MESSAGE/:id
+
+-- GET
+SELECT * FROM MESSAGE WHERE ID= :id
